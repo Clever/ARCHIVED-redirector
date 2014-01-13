@@ -1,0 +1,26 @@
+{
+  "name": "redirector",
+  "version": "0.0.0",
+  "description": "simple app that redirects any incoming requests to a different domain",
+  "main": "index.js",
+  "scripts": {
+    "test": "make -Br test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Clever/redirector.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/Clever/redirector/issues"
+  },
+  "devDependencies": {
+    "quest": "~0.2.8",
+    "mocha": "~1.17.0"
+  },
+  "dependencies": {
+    "coffee-script": "~1.6.3",
+    "underscore": "~1.5.2"
+  }
+}
