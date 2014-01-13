@@ -10,12 +10,10 @@ subdomain_from_host = (host='') ->
 
 server = http.createServer (req, res) ->
   subdomain = subdomain_from_host req.headers.host
-  [pathname, search] = req.url.split '?'
-  new_url = url.format _({pathname, search}).extend
-    protocol: 'http'
-    host: subdomain + process.env.TARGET_HOST
+  new_url = url.format _(url.parse req.url).chain()
+    .pick('pathname', 'search')
+    .extend({protocol: 'http', host: subdomain + process.env.TARGET_HOST}).value()
   res.writeHead 301, location: new_url
   res.end()
 
-server.listen PORT, ->
-  console.log "redirector listening on port #{PORT}"
+server.listen PORT, -> console.log "redirector listening on port #{PORT}"
