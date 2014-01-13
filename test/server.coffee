@@ -21,7 +21,7 @@ describe 'redirector', ->
   _(['', 'www.', 'support.']).each (subdomain) ->
     describe "with subdomain #{subdomain}", ->
       _(paths).each ({name, path}) ->
-        it "redirects properly with #{name}", (done) ->
+        it "redirects http properly with #{name}", (done) ->
           opts =
             uri: "http://localhost:#{PORT}#{path}"
             headers:
@@ -31,4 +31,17 @@ describe 'redirector', ->
             assert.ifError err
             assert.equal resp.statusCode, 301
             assert.equal resp.headers.location, "http://#{subdomain}#{TARGET_HOST}#{path}"
+            done()
+
+        it "redirects https properly with #{name}", (done) ->
+          opts =
+            uri: "http://localhost:#{PORT}#{path}"
+            headers:
+              host: subdomain + TARGET_HOST
+              'x-forwarded-proto': 'https'
+            followRedirects: false
+          quest opts, (err, resp, body) ->
+            assert.ifError err
+            assert.equal resp.statusCode, 301
+            assert.equal resp.headers.location, "https://#{subdomain}#{TARGET_HOST}#{path}"
             done()

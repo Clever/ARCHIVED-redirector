@@ -10,9 +10,10 @@ subdomain_from_host = (host='') ->
 
 server = http.createServer (req, res) ->
   subdomain = subdomain_from_host req.headers.host
+  protocol = req.headers['x-forwarded-proto'] or 'http'
   new_url = url.format _(url.parse req.url).chain()
     .pick('pathname', 'search')
-    .extend({protocol: 'http', host: subdomain + process.env.TARGET_HOST}).value()
+    .extend({protocol}, {host: subdomain + process.env.TARGET_HOST}).value()
   res.writeHead 301, location: new_url
   res.end()
 
