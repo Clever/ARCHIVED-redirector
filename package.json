@@ -1,6 +1,6 @@
 {
   "name": "redirector",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "simple app that redirects any incoming requests to a different domain",
   "main": "index.js",
   "scripts": {
