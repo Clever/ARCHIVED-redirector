@@ -1,6 +1,8 @@
 redirector
 ==========
 
+_ARCHIVED: This repo is no longer maintained by Clever. If you're interested in taking ownership, please let us know via a GH issue._
+
 `redirector` is a simple app that redirects all requests to a target domain, preserving the original
 request's protocol, subdomain, path, and querystring.
 
