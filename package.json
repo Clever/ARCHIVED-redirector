@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "coffee-script": "~1.6.3",
+    "kayvee": "^3.13.0",
     "underscore": "~1.5.2"
   }
 }
